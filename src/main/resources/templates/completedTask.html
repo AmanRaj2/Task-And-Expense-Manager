@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Completed Tasks</title>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">ToDo App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li>
+        <a class="nav-link" href="addTask">Add Task</a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-link" href="/completedTask">Completed Task</a>
+      </li>
+      <a class="nav-link" href="/kharchaHome">Hisab Kitab</a>
+      </li>
+      <li >
+        <a class="nav-link" href="/loadDashboard">Dashboard</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<!-- navbar -->
+<!--
+<div th:if =${session.msg}>
+  <div class="alert alert-success" role="alert" th:text="${session.msg}">
+  </div>
+  <th:block th:text="${@sessionHelper.removeMessageFromSession()}"> </th:block>
+</div>
+-->
+
+
+<div class="container p-5">
+  <table class="table table-striped">
+    <h3>Completed Tasks</h3>
+    <thead class="bg-primary text-white">
+    <tr>
+      <th scope="col">S.No.</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">Created On</th>
+      <th scope="col">Updated On</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e,iterator : ${taskList}">
+      <td th:text="${iterator.index + 1}"></td>
+      <td th:text="${e.title}"></td>
+      <td th:text="${e.description}"></td>
+      <td th:text="${e.priority}"></td>
+      <td th:text="${e.status}"></td>
+      <td th:text="${@utility.formatDate(e.createdOn)}"></td>
+      <td th:text="${@utility.formatDate(e.updatedOn)}"></td>
+      <td>
+        <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${e.id})}">Edit</a>
+        <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${e.id})}">Delete</a>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

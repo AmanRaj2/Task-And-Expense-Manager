@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+  <title>Edit Task</title>
+</head>
+<body>
+<!-- Navbar -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">ToDo App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active"><a class="nav-link" href="/">Home
+        <span class="sr-only">(current)</span>
+      </a></li>
+      <li><a class="nav-link" href="/addTask">Add Task</a></li>
+      <li>
+        <a class="nav-link" href="/completedTask">Completed Task</a>
+      </li>
+      <a class="nav-link" href="/kharchaHome">Hisab Kitab</a>
+      </li>
+      <li>
+        <a class="nav-link" href="/loadDashboard">Dashboard</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Navbar -->
+<!--
+  <div class="row">
+    <div class="col-md-10 offset-md-0">
+      <div class="card">
+        <div class="card-body">
+-->
+
+<div class="container">
+
+          <h4 class="text-center text-primary">Edit Task</h4>
+
+          <form th:action="@{/update}" method="post" th:object="${task}">
+            <input type="hidden" th:value="${task.toDoTask.id}" name="toDoTask.id">
+
+            <div class="form-row">
+              <div class="col">
+                <label>Task Id : </label> <span th:text="${task.toDoTask.id}"></span>
+              </div>
+              <div class="col">
+                <label>Created On : </label> <span th:text="${@utility.formatDate(task.toDoTask.createdOn)}"></span>
+              </div>
+              <div class="col">
+                <label>Last Updated On : </label> <span th:text="${@utility.formatDate(task.toDoTask.updatedOn)}"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              Task Title : <input type="text" class="form-control" name="toDoTask.title" th:value="${task.toDoTask.title}">
+            </div>
+
+            <div class="form-group">
+              <label>Task Description</label> <input type="text"
+                                                     class="form-control" name="toDoTask.description" th:value="${task.toDoTask.description}">
+            </div>
+
+
+            <div class="form-row">
+              <div class="col">
+            <div class="form-group">
+              <label>Select Priority</label>
+              <select class="form-select" aria-label="Default select example" name="toDoTask.priority" >
+                <option th:value="${task.toDoTask.priority}" th:text="${task.toDoTask.priority}" selected></option>
+                <option th:value="LOW" >LOW</option>
+                <option th:value="MEDIUM">MEDIUM</option>
+                <option th:value="HIGH">HIGH</option>
+              </select>
+            </div>
+              </div>
+
+              <div class="col">
+            <div class="form-group">
+              <label>Select Status</label>
+              <select class="form-select" aria-label="Default select example" name="toDoTask.status" >
+                <option th:value="${task.toDoTask.status}" th:text="${task.toDoTask.status}" selected></option>
+                <option th:value="NEW">NEW</option>
+                <option th:value="IN_PROGRESS">IN_PROGRESS</option>
+                <option th:value="PENDING">PENDING</option>
+                <option th:value="COMPLETED">COMPLETED</option>
+              </select>
+            </div>
+            </div>
+            </div>
+
+
+            <div class="form-group">
+              <label>Add Note</label> <input type="text"
+                                               class="form-control" name="note" th:value="${task.note}">
+            </div>
+
+
+            <div class="col-md-3 offset-md-3">
+            <button class="btn btn-primary btn-block">Update</button>
+            </div>
+          </form>
+       </div>
+
+<br>
+<div class="container">
+  <table class="table table-striped">
+    <!--<h3>Task notes</h3>-->
+    <!--<thead class="bg-primary text-white">
+    <tr>
+      <th scope="col">S.No.</th>
+      <th scope="col">Updated On</th>
+      <th scope="col">Note</th>
+    </tr>
+    </thead>-->
+    <tbody>
+    <tr th:each="e,iterator  : ${task.toDoTask.taskUpdates}">
+      <!--<th th:text="${e.id}"></th>-->
+      <!--<td th:text="${iterator.index + 1}"></td>-->
+      <td th:text="${@utility.formatDate(e.lastUpdateDate)}"></td>
+      <td th:text="${e.lastUpdate}"></td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

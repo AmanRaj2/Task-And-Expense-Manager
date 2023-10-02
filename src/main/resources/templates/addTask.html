@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+  <title>Add Task</title>
+</head>
+<body>
+<!-- Navbar -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">ToDo App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li>
+        <a class="nav-link" href="/">Home
+        <span class="sr-only">(current)</span>
+      </a></li>
+      <li class="nav-item active"><a class="nav-link" href="addTask">Add Task</a></li>
+      <li>
+        <a class="nav-link" href="/completedTask">Completed Task</a>
+      </li>
+      <a class="nav-link" href="/kharchaHome">Hisab Kitab</a>
+      </li>
+      <li>
+        <a class="nav-link" href="/loadDashboard">Dashboard</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Navbar -->
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center text-primary">Add Task</h4>
+
+          <form th:action="@{/saveTask}" method="post">
+
+            <div class="form-group">
+              <label>Enter Title</label> <input type="text"
+                                                    class="form-control" name="title" required>
+            </div>
+
+            <div class="form-group">
+              <label>Enter Description</label> <input type="text"
+                                                  class="form-control" name="description">
+            </div>
+
+            <div class="form-group">
+              <label>Select Priority</label>
+                <select class="form-select" aria-label="Default select example" name="priority">
+                  <option value="LOW" selected>LOW</option>
+                  <option value="MEDIUM">MEDIUM</option>
+                  <option value="HIGH">HIGH</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+              <label>Select Status</label>
+                <select class="form-select" aria-label="Default select example" name="status">
+                  <option value="NEW" selected>NEW</option>
+                  <option value="IN_PROGRESS">IN_PROGRESS</option>
+                  <option value="PENDING">PENDING</option>
+                  <option value="COMPLETED">COMPLETED</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary btn-block">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
