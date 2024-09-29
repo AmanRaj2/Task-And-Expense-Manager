@@ -17,6 +17,8 @@ public class KharchaSummaryPojo {
     private Double onRent;
     private Double onMarketing;
     private Double onMiscellaneous;
+    private Double onLoan;
+    private Double onInsurance;
     private Double total;
     private Date fromDate;
     private Date toDate;

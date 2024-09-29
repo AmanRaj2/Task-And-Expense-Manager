@@ -72,6 +72,7 @@
       <th scope="col">RENT</th>
       <th scope="col">MARKETING</th>
       <th scope="col">MISCELLANEOUS</th>
+      <th scope="col">LOAN/INSURANCE</th>
       <th scope="col">TOTAL</th>
     </tr>
     </thead>
@@ -82,6 +83,7 @@
       <td th:text="${kharchaSummary.onRent}"></td>
       <td th:text="${kharchaSummary.onMarketing}"></td>
       <td th:text="${kharchaSummary.onMiscellaneous}"></td>
+      <td th:text="${kharchaSummary.onLoan}+${kharchaSummary.onInsurance}"></td>
       <td th:text="${kharchaSummary.total}"></td>
     </tr>
 
